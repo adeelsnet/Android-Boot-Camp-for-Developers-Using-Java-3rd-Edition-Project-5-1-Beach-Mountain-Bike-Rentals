@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Beach and Mountain Bike Rentals</string>
+    <string name="app_listItem_beach_bike">Beach Bike Rentals</string>
+    <string name="app_listItem_mountain_bike">Mountain Bike Rentals</string>
+    <string name="app_listItem_bike_rentals_web">Bike Rentals website</string>
+</resources>
