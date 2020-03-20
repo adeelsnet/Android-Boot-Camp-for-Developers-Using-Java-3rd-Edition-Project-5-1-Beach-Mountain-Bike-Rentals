@@ -13,10 +13,12 @@ public class ImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
 
-        int imageToDisplay = getIntent().getExtras().getInt("IMAGE_ID");
+        int imageToDisplay = getIntent().getIntExtra("IMAGE_ID", R.drawable.ic_launcher_background);
+
         ImageView imageView = findViewById (R.id.image_view);
         imageView.setImageDrawable(ContextCompat.getDrawable (this,imageToDisplay));
 
-//        setTitle(R.string.app_listItem_beach_bike);
+        String title = getIntent().getStringExtra("TITLE");
+        setTitle(title);
     }
 }

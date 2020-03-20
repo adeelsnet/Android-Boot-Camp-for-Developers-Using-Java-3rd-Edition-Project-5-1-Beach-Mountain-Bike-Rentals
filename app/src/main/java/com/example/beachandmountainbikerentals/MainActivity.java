@@ -12,32 +12,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends ListActivity {
+    String[] bikes;
+    int[] bikeImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
-        String[ ] bikes = {"Beach Bike Rentals", "Mountain Bike Rentals", "Bike Rentals Website"};
+        bikes = new String[]{"Beach Bike Rentals", "Mountain Bike Rentals", "Bike Rentals Website"};
+
+        bikeImage = new int[]{R.drawable.beach, R.drawable.mountain, R.drawable.ic_launcher_background};
+
         setListAdapter(new ArrayAdapter<String>(this, R.layout.activity_main, R.id.bikes, bikes));
-    }
-
-    @NonNull
-    private Intent getIntentForImageActivity (int imageId)
-    {
-        Intent intent = new Intent (MainActivity.this, ImageActivity.class);
-
-        intent.putExtra("IMAGE_ID",imageId);
-        return intent;
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
+        String currentBike = bikes[position];
+        int currentBikeImg = bikeImage[position];
         switch(position){
             case 0:
-                startActivity(getIntentForImageActivity(R.drawable.beach));
-                break;
             case 1:
-                startActivity(getIntentForImageActivity(R.drawable.mountain));
+                startActivity(getIntentForImageActivity(currentBikeImg, currentBike));
                 break;
             case 2:
                 startActivity(
@@ -49,5 +45,16 @@ public class MainActivity extends ListActivity {
             default:
                 super.onListItemClick(l, v, position, id);
         }
+    }
+
+    @NonNull
+    private Intent getIntentForImageActivity (int imageId, String title)
+    {
+        Intent intent = new Intent (MainActivity.this, ImageActivity.class);
+
+        intent.putExtra("IMAGE_ID",imageId);
+
+        intent.putExtra("TITLE", title);
+        return intent;
     }
 }
